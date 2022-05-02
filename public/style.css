@@ -1,0 +1,24 @@
+body{
+    background-color: black;
+}
+.content{
+    background-color:#ffffff;
+    margin:0 auto;
+    margin:10% 20%;
+    border-radius:12px;
+}
+.content input{
+    padding:15px;
+    margin-left:10%;
+    width:70%;
+    margin-bottom:5%;
+    border-radius:34px;
+
+}
+.button{
+    width:10%;
+}
+.content i{
+    font-size:34px;
+    color:#87cee9;
+}
