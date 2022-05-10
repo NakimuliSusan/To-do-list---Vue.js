@@ -1,7 +1,5 @@
-import firebase from 'firestore'
-import 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyAQqc49xpLy8CBWZ1i9tkdzzcuRyR2umsE',
   authDomain: 'suzie-todo-list.firebaseapp.com',
@@ -10,6 +8,5 @@ const firebaseConfig = {
   messagingSenderId: '591086623419',
   appId: '1:591086623419:web:68e11e38a6f491fb80279e'
 }
-
-// Initialize Firebase
-export const db = initializeApp(firebaseConfig).firestore()
+export const app = initializeApp(firebaseConfig)
+// Your web app's Firebase configuration

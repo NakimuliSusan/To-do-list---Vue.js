@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: black;
 }
 .content{
@@ -17,8 +17,9 @@ body{
 }
 .button{
     width:10%;
+    border:2px solid black;
 }
 .content i{
     font-size:34px;
     color:#87cee9;
-}
+} */

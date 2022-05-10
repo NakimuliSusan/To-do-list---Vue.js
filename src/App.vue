@@ -2,17 +2,17 @@
 
   <v-content>
 
-    <Todolist/>
+    <suzie-todo-vue/>
 
   </v-content>
 
 </template>
 
 <script>
-import Todolist from './components/suzie-todo.vue'
+import suzieTodoVue from './components/suzie-todo.vue'
 export default {
   name: 'App',
-  components: { Todolist },
+  components: { suzieTodoVue },
   data: () => ({
 
   })
@@ -28,18 +28,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.content{
+.first{
   background-color:#ffffff;
-}
-button{
-  padding:10px;
-  border-radius:20px;
-  background-color:#87cee9;
-  border-style: none;
-}
-input::placeholder{
-    text-align: center;
-    font-size:20px;
 }
 
 </style>
