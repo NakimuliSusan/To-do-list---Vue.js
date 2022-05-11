@@ -36,6 +36,10 @@ export default {
  width:25%;
  border-radius:20px;
 }
+.input::placeholder{
+  text-align: center;
+  font-size:20px;
+}
 .button{
   margin-left:3%;
   padding:20px;
@@ -46,5 +50,4 @@ export default {
 .button:hover{
   background-color:palevioletred;
 }
-
 </style>
