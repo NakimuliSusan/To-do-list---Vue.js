@@ -16,12 +16,16 @@
       max-width="400"
       v-for="Todo in Todos"
       :key="Todo.id"
-    ></v-card>
+    >
+    <div class="d-flex justify-content-between">
+      <!-- Add the todo list items here -->
+    </div>
+    </v-card>
   </div>
-  <input type="text" />
 </template>
+
 <script>
-import { app } from '../firebase/db'
+import { db } from '../firebase/db'
 export default {
   data () {
     return {
@@ -32,13 +36,13 @@ export default {
   methods: {
     async addItem () {
       if (this.newitem) {
-        await app.collection('Todo').add({ name: this.newitem })
+        await db.collection('Todo').add({ name: this.newitem, done: false })
         this.newitem = ''
       }
-      const todo = this.newitem
-      if (!todo) {
-        alert('Please enter item')
-      }
+    },
+    async getTodos () {
+      const todos = await db.collection('Todo').get()
+      this.Todos = todos.docs.map(doc => doc.data())
     }
   }
 }
