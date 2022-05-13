@@ -5,10 +5,10 @@
       class="input"
       type="text"
       v-model="newitem"
-      @keyup.enter="addItem"
+      @keyup.enter.prevent="addItem"
       placeholder="Enter Todo"
     />
-    <button class="button" large color="prmary" @click="addItem">
+    <button class="button" large color="prmary" @click.enter="addItem">
       Add Item
     </button>
     <v-card
@@ -18,7 +18,8 @@
       :key="Todo.id"
     >
     <div class="d-flex justify-content-between">
-      <!-- Add the todo list items here -->
+      <v-list-item-title class="list">{{Todo.name}}</v-list-item-title>
+      <button color="red" @click="deleteTodo(Todo.id)">delete</button>
     </div>
     </v-card>
   </div>
@@ -36,14 +37,20 @@ export default {
   methods: {
     async addItem () {
       if (this.newitem) {
-        await db.collection('Todo').add({ name: this.newitem, done: false })
+        await db.collection('Todos').add({ name: this.newitem, done: false })
         this.newitem = ''
       }
     },
-    async getTodos () {
-      const todos = await db.collection('Todo').get()
-      this.Todos = todos.docs.map(doc => doc.data())
+    deleteTodo (id) {
+      db.collection('Todo').doc(id).delete()
+    },
+    firestore: {
+      Todos: db.collection('Todos')
     }
+    // async getTodos () {
+    //   const todos = await db.collection('Todo').get()
+    //   this.Todos = todos.docs.map(doc => doc.data())
+    // }
   }
 }
 </script>
