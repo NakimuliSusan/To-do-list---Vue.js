@@ -34,6 +34,11 @@ export default {
       newitem: ''
     }
   },
+  // Learn about vue lifecycle callbacks.
+  created () {
+    // When the view is created, fetch the todo items.
+    this.getTodos()
+  },
   methods: {
     async addItem () {
       if (this.newitem) {
@@ -46,11 +51,23 @@ export default {
     },
     firestore: {
       Todos: db.collection('Todos')
+    },
+    updateTodoItem (id, done) {
+      db.collection('Todos').doc(id).update({ done: done })
+    },
+    getTodos () {
+      // Read about firebase realtime data fetching: https://firebase.google.com/docs/firestore/query-data/listen#web-version-8
+      db.collection('Todo').onSnapshot(snapshot => {
+        this.Todos = snapshot.docs.map((doc) => { return { id: doc.id, ...doc.data() } })
+      })
+      // Read about the Dot operator used to access the data. https://oprearocks.medium.com/what-do-the-three-dots-mean-in-javascript-bc5749439c9a
+      // The code above is the same as:
+      // Getting items using for loop
+      // Learn about the `map()` function for javascript arrays
+      // for (let i = 0; i < todos.docs.length; i++) {
+      //   this.Todos.push(todos.docs[i].data())
+      // }
     }
-    // async getTodos () {
-    //   const todos = await db.collection('Todo').get()
-    //   this.Todos = todos.docs.map(doc => doc.data())
-    // }
   }
 }
 </script>
