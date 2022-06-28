@@ -8,22 +8,24 @@
       @keyup.enter.prevent="addItem"
       placeholder="Enter Todo"
     />
-    <button class="button" large color="prmary" @click.enter="addItem">
-      Add Item
-    </button>
-    <v-card
-      class="max-auto pa-3 ma-2 text-center"
+    <br>
+    <ul
+      class="list-container max-auto pa-3 ma-2 text-center"
       max-width="400"
       v-for="Todo in Todos"
-      :key="Todo.id"
-    >
-    <div class="d-flex justify-content-between">
-      <input type="checkbox" name="check-box" id="check">
-      <v-list-item-title class="list">{{Todo.name}}</v-list-item-title>
-      <button class="button-2" @click.prevent="editTodo(Todo-id)">Edit</button>
-      <button  class="button-1"  color="red" @click="deleteTodo(Todo.id)">delete</button>
+      :key="Todo.id">
+    <div class="list-item-flex">
+      <div class="list-item leading">
+        <input type="checkbox" name="check-box" id="check">
+        <div class="list-title">{{Todo.name}}</div>
+      </div>
+      <div class="list-item trailing">
+         <button class="button button-2" @click.prevent="editTodo(Todo-id)">Edit</button>
+         <button  class="button button-1"  color="red" @click="deleteTodo(Todo.id)">Delete</button>
+      </div>
     </div>
-    </v-card>
+
+   </ul>
   </div>
 </template>
 
@@ -84,52 +86,70 @@ export default {
   background-color:#ffffff;
 }
 .input{
- padding:20px;
+ padding:8px;
  width:25%;
- border-radius:20px;
+ font-size: 16px;
+ border-radius:16px;
 }
 .input::placeholder{
   text-align: center;
-  font-size:20px;
+  font-size:16px;
 }
-.button{
-  margin-left:3%;
-  padding:20px;
-  border-radius:20px;
-  background-color: rgb(12, 150, 188);
-  border-style:none;
-}
+
 .button:hover{
   background-color:palevioletred;
 }
-.d-flex{
+
+/* List */
+.list-item-flex{
+  flex-direction: column;
   border:solid 1px black;
-  justify-content: space-between;
+  display: flex;
   margin-top:1%;
   width:50%;
   margin-left:20%;
   padding:10px;
   border-radius:10px;
   text-align: center;
+  justify-content: space-between;
 }
-.button-1{
-  width:20%;
-  padding:15px;
-  background-color:red;
+
+.list-item{
+  display: flex;
+  direction: row;
+  object-fit: wrap;
+}
+
+.list-title {
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: start;
+}
+.trailing {
+  align-self: flex-end;
+}
+
+.button {
+  margin: 2px;
+  width: 70px;
+  padding:8px;
+  background-color:gray;
   border-style:none;
-  border-radius:20px;
+  border-radius:16px;
   color:white;
-  margin-left:15%;
   align-content:right;
 }
+
+.button-submit {
+    background-color:green;
+
+}
+.button-1 {
+  background-color:red;
+}
 .button-2{
-  width:20%;
-  padding:15px;
   background-color:rgb(36, 202, 194);
-  border-style:none;
-  border-radius:20px;
-  color:white;
-  margin-left:10%;
 }
 
 </style>
