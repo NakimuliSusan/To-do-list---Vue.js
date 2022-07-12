@@ -20,7 +20,7 @@
         <div class="list-title">{{Todo.name}}</div>
       </div>
       <div class="list-item trailing">
-         <button class="button button-2" @click.prevent="editTodo(Todo-id)">Edit</button>
+         <button class="button button-2" @click="editTodo(Todo.id)" v-show="isEditable">Edit</button>
          <button  class="button button-1"  color="red" @click="deleteTodo(Todo.id)">Delete</button>
       </div>
     </div>
@@ -35,7 +35,8 @@ export default {
   data () {
     return {
       Todos: [],
-      newitem: ''
+      newitem: '',
+      isEditable: true
     }
   },
   // Learn about vue lifecycle callbacks.
@@ -46,18 +47,15 @@ export default {
   methods: {
     async addItem () {
       if (this.newitem) {
-        await db.collection('Todos').add({ name: this.newitem, done: false })
+        await db.collection('Todos').add({ name: this.newitem, done: 'completed' })
         this.newitem = ''
       }
     },
     editTodo (id) {
-      db.collection('Todos').doc(id).Edit()
+      db.collection('Todos').doc(id).editTodo(id)
     },
     deleteTodo (id) {
       db.collection('Todos').doc(id).delete()
-    },
-    edit: function () {
-      this.isEditing = !this.isEditing
     },
     firestore: {
       Todos: db.collection('Todos')
